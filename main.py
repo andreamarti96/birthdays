@@ -1,6 +1,6 @@
 import argparse
-from birthdays_package.birthdays_module import return_data,
-return_index, return_set
+from birthdays_package.birthdays_module import (return_data,
+return_index, return_set)
 
 '''Given a name, it returns his/her birth day, death, homwtown an
 name of the people born in the same century, according to different
