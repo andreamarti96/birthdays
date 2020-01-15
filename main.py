@@ -4,7 +4,7 @@ import sqlite3
 import hashlib
 import random
 import sys
-from birthdays_package.birthdays_module2 import (return_data,
+from birthdays_package.birthdays_module import (return_data,
 return_index, return_set)
 
 
