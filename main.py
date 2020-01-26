@@ -1,3 +1,7 @@
+'''Given a name, it returns his/her birth day, death, homwtown an
+name of the people born in the same century, according to different
+level of verbosity'''
+
 import argparse
 import csv
 import sqlite3
@@ -57,12 +61,9 @@ def check_for_user(username, password):
     conn.commit()
 
 
-'''Given a name, it returns his/her birth day, death, homwtown an
-name of the people born in the same century, according to different
-level of verbosity'''
-
-
 def parse_arguments():
+    '''Define arguments that the user will input and that will be
+    parsed through'''
     parser = argparse.ArgumentParser()
     parser.add_argument("name", help="return the birthday", type=str)
     parser.add_argument("-v", "--verbosity", help="increase output verbosity",
@@ -80,7 +81,7 @@ def parse_arguments():
     else:
         if args.c and args.p:
             check_for_user(args.c, args.p)
-        if args.verbosity > 1:
+        if args.verbosity == 2:
             print('The '+args.name.upper() + '\'s' + ' birthday is: ' +
                   dataset[1][i])
             print('The '+args.name.upper() + '\'s' + ' death is: ' +
