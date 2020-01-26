@@ -1,13 +1,15 @@
-"""This is our birthday module."""
+'''
+This is our birthday module.
+'''
 
 
 import csv
 
 
-'''Open the birthdays.csv and return data'''
-
-
 def return_data(filename='birthdays_package/birthdays.csv'):
+    '''
+    Open the birthdays.csv and return data
+    '''
     arr_name = []
     arr_birth = []
     arr_death = []
@@ -24,10 +26,11 @@ def return_data(filename='birthdays_package/birthdays.csv'):
 
 data_s = return_data()
 
-'''Return the index of the typed name'''
-
 
 def return_index(name):
+    '''
+    Return the index of the typed name
+    '''
     count = -1
     for i in data_s[0]:
         count += 1
@@ -35,10 +38,10 @@ def return_index(name):
             return count
 
 
-'''Return the name of the persons born in the same century'''
-
-
 def return_set(name):
+    '''
+    Return the name of the persons born in the same century
+    '''
     set_b = data_s[1]
     set_n = data_s[0]
     set_same_b = []
