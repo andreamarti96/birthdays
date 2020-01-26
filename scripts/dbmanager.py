@@ -26,6 +26,7 @@ def open_and_create():
                        salt CHAR(256),
                        PRIMARY KEY (digest))''')
 
+
 ''' Creating new optional argumnets for adding the user with his/her password
 
 '''
@@ -38,6 +39,7 @@ def parse_args():
     parser.add_argument('-p', help="the username password",
                         required=True)
     return parser.parse_args()
+
 
 ''' Adding new user and password to database user'''
 
@@ -52,7 +54,7 @@ def save_new_username(username, password):
     cursor.execute("INSERT OR REPLACE INTO user VALUES (?,?,?)",
                    (username, digest, salt))
     conn.commit()
-    print ("User {} succesfully added to data.db".format(username))
+    print("User {} succesfully added to data.db".format(username))
 
 
 open_and_create()
@@ -61,7 +63,6 @@ args = parse_args()
 if args.a and args.p:
     save_new_username(args.a, args.p)
 else:
-    print ("Something went wrong...")
+    print("Something went wrong...")
 
 conn.close()
-
