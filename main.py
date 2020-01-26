@@ -4,8 +4,8 @@ import sqlite3
 import hashlib
 import random
 import sys
-from birthdays_package.birthdays_module import (return_data,
-return_index, return_set)
+from birthdays_package.birthdays_module import (
+    return_data, return_index, return_set)
 
 
 conn = None
@@ -98,8 +98,8 @@ def parse_arguments():
             print('The '+args.name.upper() + '\'s' + ' birthday is: ' +
                   dataset[1][i])
 
+
 if __name__ == "__main__":
     args = parse_arguments()
 
 conn.close()
-
