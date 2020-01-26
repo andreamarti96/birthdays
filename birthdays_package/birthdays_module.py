@@ -20,6 +20,8 @@ def return_data(filename='birthdays_package/birthdays.csv'):
             arr_death += [row[2]]
             arr_city += [row[3]]
     return arr_name, arr_birth, arr_death, arr_city
+
+
 data_s = return_data()
 
 '''Return the index of the typed name'''
@@ -31,6 +33,7 @@ def return_index(name):
         count += 1
         if name == i:
             return count
+
 
 '''Return the name of the persons born in the same century'''
 
@@ -53,4 +56,3 @@ def return_set(name):
     print("People born in the same century of " + name.upper() + ":")
     for item in dt_same:
         print(item+": " + dt_same[item])
-

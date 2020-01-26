@@ -26,4 +26,3 @@ def csv_reader(path):
 
 
 csv_reader('birthdays_package/birthdays.csv')
-
