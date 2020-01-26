@@ -31,6 +31,6 @@ class TestMain(unittest.TestCase):
     def tearDown(self):
         os.remove(self.temporary_file)
 
+
 if __name__ == '__main__':
     unittest.main()
-
