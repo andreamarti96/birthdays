@@ -1,3 +1,7 @@
+'''
+create a database
+'''
+
 import sqlite3
 import hashlib
 import random
@@ -6,12 +10,11 @@ import argparse
 conn = None
 cursor = None
 
-''' Creating tables named user and columns like:
-username, digest, and salt. The primary key is
-assigned to digest.'''
-
 
 def open_and_create():
+    ''' Creating tables named user and columns like:
+    username, digest, and salt. The primary key is
+    assigned to digest.'''
     global conn
     global cursor
     conn = sqlite3.connect('mydatabase.db')
@@ -27,12 +30,11 @@ def open_and_create():
                        PRIMARY KEY (digest))''')
 
 
-''' Creating new optional argumnets for adding the user with his/her password
-
-'''
-
-
 def parse_args():
+    '''
+    Creating new optional argumnets for adding the user
+    with his/her password
+    '''
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', help="add a usernamename (requires -p)",
                         required=False)
@@ -41,10 +43,10 @@ def parse_args():
     return parser.parse_args()
 
 
-''' Adding new user and password to database user'''
-
-
 def save_new_username(username, password):
+    '''
+    Adding new user and password to database user
+    '''
     global conn
     global cursor
     salt = str(random.random())
