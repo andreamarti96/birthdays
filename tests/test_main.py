@@ -18,6 +18,11 @@ class TestMain(unittest.TestCase):
         """Check if there is a csv file."""
         data = return_data(filename='/tmp/random_file.csv')
         self.assertFalse(data)
+        
+    def test_empty_file(self):
+        """Check the presence of data inside the csv file."""
+        data = return_data(filename=self.temporary_file)
+        self.assertEqual(data, ([],[],[],[]))
 
 
     def tearDown(self):
