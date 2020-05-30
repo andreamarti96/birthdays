@@ -14,14 +14,17 @@ def return_data(filename='birthdays_package/birthdays.csv'):
     arr_birth = []
     arr_death = []
     arr_city = []
-    with open(filename, mode='r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for row in csv_reader:
-            arr_name += [row[0]]
-            arr_birth += [row[1]]
-            arr_death += [row[2]]
-            arr_city += [row[3]]
-    return arr_name, arr_birth, arr_death, arr_city
+    try:
+        with open(filename, mode='r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            for row in csv_reader:
+                arr_name += [row[0]]
+                arr_birth += [row[1]]
+                arr_death += [row[2]]
+                arr_city += [row[3]]
+        return arr_name, arr_birth, arr_death, arr_city
+    except FileNotFoundError:
+        return False
 
 
 data_s = return_data()
