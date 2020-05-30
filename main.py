@@ -7,6 +7,7 @@ import csv
 import sqlite3
 import hashlib
 import random
+import logging
 import sys
 from birthdays_package.birthdays_module import (
     return_data, return_index, return_set)
@@ -39,8 +40,8 @@ def check_for_user(username, password):
         "SELECT salt FROM user WHERE username=?", (username,))
     salt = salt.fetchall()
     if salt == []:
-        print('Invalid Username')
-        print('Please, Check Your Username...')
+        logging.error('Invalid Username')
+        logging.error('Please, Check Your Username...')
         quit()
     salt = salt[0][0]
     results = cursor.execute(
@@ -51,12 +52,12 @@ def check_for_user(username, password):
         digest = hashlib.sha256(digest.encode('utf-8')).hexdigest()
     conn.commit()
     if digest == results:
-        print('Username Correct')
-        print('Password Correct')
-        print('You are allowed to access the program!')
+        logging.info('Username Correct')
+        logging.info('Password Correct')
+        logging.info('You are allowed to access the program!')
     else:
-        print("Invalid Password")
-        print('Please, Check Your Password...')
+        logging.info("Invalid Password")
+        logging.info('Please, Check Your Password...')
         quit()
     conn.commit()
 
@@ -77,27 +78,22 @@ def parse_arguments():
     i = return_index(args.name)
     dataset = return_data()
     if i is None:
-        print("error")
+        logging.error("error")
     else:
+        name = args.name.upper()
         if args.c and args.p:
             check_for_user(args.c, args.p)
         if args.verbosity == 2:
-            print('The '+args.name.upper() + '\'s' + ' birthday is: ' +
-                  dataset[1][i])
-            print('The '+args.name.upper() + '\'s' + ' death is: ' +
-                  dataset[2][i])
-            print('The '+args.name.upper() + '\'s' + ' hometown is: ' +
-                  dataset[3][i])
+            logging.info(name + '\'s' + ' birthday is: ' + dataset[1][i])
+            logging.info(name + '\'s' + ' death is: ' + dataset[2][i])
+            logging.info(name + '\'s' + ' hometown is: ' + dataset[3][i])
         elif args.verbosity == 1:
-            print('The ' + args.name.upper() + '\'s' + ' birthday is: ' +
-                  dataset[1][i])
-            print('The ' + args.name.upper() + '\'s' + ' death is: ' +
-                  dataset[2][i])
+            logging.info(name + '\'s' + ' birthday is: ' + dataset[1][i])
+            logging.info(name + '\'s' + ' death is: ' + dataset[2][i])
         elif args.set:
             return_set(args.name)
         else:
-            print('The '+args.name.upper() + '\'s' + ' birthday is: ' +
-                  dataset[1][i])
+            logging.info(name+ '\'s' + ' birthday is: ' + dataset[1][i])
 
 
 if __name__ == "__main__":
