@@ -6,9 +6,11 @@ import sqlite3
 import hashlib
 import random
 import argparse
+import logging
 
 conn = None
 cursor = None
+logging.basicConfig(level=logging.INFO)
 
 
 def open_and_create():
@@ -56,7 +58,8 @@ def save_new_username(username, password):
     cursor.execute("INSERT OR REPLACE INTO user VALUES (?,?,?)",
                    (username, digest, salt))
     conn.commit()
-    print("User {} succesfully added to data.db".format(username))
+    logging.info("User {} succesfully added to data.db".format(username))
+
 
 
 open_and_create()
@@ -65,6 +68,6 @@ args = parse_args()
 if args.a and args.p:
     save_new_username(args.a, args.p)
 else:
-    print("Something went wrong...")
+    logging.error("Something went wrong...")
 
 conn.close()
