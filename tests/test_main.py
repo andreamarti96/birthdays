@@ -29,6 +29,10 @@ class TestMain(unittest.TestCase):
         data = return_index('Random_Person_Haha')
         self.assertEqual(data, None)
 
+    def test_set(self):
+        """Check if the set returns a meaningful value for an existent item."""
+        data = return_set('Donald Trump')
+        self.assertGreater(len(data.keys()), 0)
 
     def tearDown(self):
         os.remove(self.temporary_file)

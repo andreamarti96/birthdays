@@ -60,6 +60,4 @@ def return_set(name):
         if dt[key] in set_same_b:
             set_same_n += [key]
     dt_same = dict(zip(set_same_n, set_same_b))
-    print("People born in the same century of " + name.upper() + ":")
-    for item in dt_same:
-        print(item+": " + dt_same[item])
+    return dt_same
