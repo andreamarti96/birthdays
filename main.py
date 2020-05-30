@@ -7,8 +7,9 @@ import csv
 import sqlite3
 import hashlib
 import random
-import logging
 import sys
+import logging
+import verboselogs
 from birthdays_package.birthdays_module import (
     return_data, return_index, return_set)
 
@@ -16,6 +17,10 @@ from birthdays_package.birthdays_module import (
 conn = None
 cursor = None
 dbpath = 'scripts/mydatabase.db'
+
+logging.basicConfig(level=logging.INFO)
+verboselogs.install()
+logger = logging.getLogger('main_logger')
 
 
 def open_and_create():
