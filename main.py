@@ -37,7 +37,7 @@ def open_and_create():
 
 def check_for_user(username, password):
     '''Check if database exists in a specific file.
-    
+
     :param username: (str) - The username
     :param password: (str) - User's password
     '''
@@ -87,29 +87,29 @@ def parse_arguments():
     parser.add_argument('-p', help="the username password", required=True)
 
     args = parser.parse_args()
-    
+
     if args.verbosity:
         if args.verbosity >= 2:
             logger.setLevel(logging.SPAM)
         elif args.verbosity == 1:
             logger.setLevel(logging.VERBOSE)
-        
+
     if args.set:
         dt_same = return_set(args.name)
         for item in dt_same:
             logger.info(item+": " + dt_same[item])
-        
+
     i = return_index(args.name)
     dataset = return_data()
-    
-    if i == None:
+
+    if i is None:
         logger.error('error\nPerson not found!')
-        logger.spam('Please see birthdays.csv file to add new information.' )
+        logger.spam('Please see birthdays.csv file to add new information.')
     else:
         name = args.name.upper()
         if args.c and args.p:
             check_for_user(args.c, args.p)
-            
+
         logger.info(name + '\'s' + ' birthday is: ' + dataset[1][i])
         logger.verbose(name + '\'s' + ' death is: ' + dataset[2][i])
         logger.spam(name + '\'s' + ' city is: ' + dataset[3][i])

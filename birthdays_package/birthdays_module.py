@@ -9,7 +9,7 @@ import csv
 def return_data(filename='birthdays_package/birthdays.csv'):
     ''' Open the birthdays.csv and return name, date of birth, date of death
     (if exists) and city.
-    
+
     :param filename: (str) The path the file that contains the data
     :return: data about the chosen person (name, birth, death, city)
     '''
@@ -36,7 +36,7 @@ data_s = return_data()
 def return_index(name):
     ''' Open the birthdays.csv and return name, date of birth, date of death
     (if exists) and city.
-    
+
     :param filename: (str) The path the file that contains the data
     :return: data about the chosen person (name, birth, death, city)
     '''
@@ -51,7 +51,7 @@ def return_index(name):
 def return_set(name):
     ''' Return the name of the persons born in the same century of the one that
     the user is trying to search for.
-    
+
     :param name: (str) the name of the person to base the search on
     :return dt_same: (dict) dictionary containing people born in the same ct.
     '''

@@ -1,4 +1,4 @@
-"""Build basic tests to check for possible errors. All functions from 
+"""Build basic tests to check for possible errors. All functions from
 the birthdays module have a test.
 """
 
@@ -20,12 +20,12 @@ class TestMain(unittest.TestCase):
         """Check if there is a csv file."""
         data = return_data(filename='/tmp/random_file.csv')
         self.assertFalse(data)
-        
+
     def test_empty_file(self):
         """Check the presence of data inside the csv file."""
         data = return_data(filename=self.temporary_file)
-        self.assertEqual(data, ([],[],[],[]))
-        
+        self.assertEqual(data, ([], [], [], []))
+
     def test_index(self):
         """Check if the index is False if person not found."""
         data = return_index('Random_Person_Haha')

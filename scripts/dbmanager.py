@@ -1,4 +1,4 @@
-'''Module used to manage the database. Find more about the usage in the 
+'''Module used to manage the database. Find more about the usage in the
 README file.'''
 
 import sqlite3
@@ -34,7 +34,7 @@ def open_and_create():
 def parse_args():
     ''' Creating new optional arguments for adding the user
     with his/her password.
-    
+
     :return parser.parse_args(): arguments that have been parsed.
     '''
     parser = argparse.ArgumentParser()
@@ -47,7 +47,7 @@ def parse_args():
 
 def save_new_username(username, password):
     ''' Adding new user and password to database user
-    
+
     :param username: (str)
     :param password: (str)
     '''
@@ -61,7 +61,6 @@ def save_new_username(username, password):
                    (username, digest, salt))
     conn.commit()
     logging.info("User {} succesfully added to data.db".format(username))
-
 
 
 open_and_create()
