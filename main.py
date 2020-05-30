@@ -39,14 +39,17 @@ def check_for_user(username, password):
     '''Check if database exists in a specific file'''
     global conn
     global cursor
+    global logger
+
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
     salt = cursor.execute(
         "SELECT salt FROM user WHERE username=?", (username,))
     salt = salt.fetchall()
     if salt == []:
-        logging.error('Invalid Username')
-        logging.error('Please, Check Your Username...')
+        logger.error('Invalid Username!\nPlease, Check Your Username...')
+        logger.verbose('See README on how to create a new user!')
+        logger.spam('Run dbmanager.py -a username -p password to add new user')
         quit()
     salt = salt[0][0]
     results = cursor.execute(
@@ -57,12 +60,12 @@ def check_for_user(username, password):
         digest = hashlib.sha256(digest.encode('utf-8')).hexdigest()
     conn.commit()
     if digest == results:
-        logging.info('Username Correct')
-        logging.info('Password Correct')
-        logging.info('You are allowed to access the program!')
+        logger.info('Username Correct! Password Correct!')
+        logger.info('You are allowed to access the program!\n')
+        logger.verbose('Please see README or use -h for advanced options!')
     else:
-        logging.info("Invalid Password")
-        logging.info('Please, Check Your Password...')
+        logger.error('Invalid Password! \nPlease, Check Your Password...')
+        logger.spam('Use dbmanager.py to change user\'s password.')
         quit()
     conn.commit()
 
@@ -80,25 +83,32 @@ def parse_arguments():
     parser.add_argument('-p', help="the username password", required=True)
 
     args = parser.parse_args()
+    
+    if args.verbosity:
+        if args.verbosity >= 2:
+            logger.setLevel(logging.SPAM)
+        elif args.verbosity == 1:
+            logger.setLevel(logging.VERBOSE)
+        
+    if args.set:
+        dt_same = return_set(args.name)
+        for item in dt_same:
+            logger.info(item+": " + dt_same[item])
+        
     i = return_index(args.name)
     dataset = return_data()
-    if i is None:
-        logging.error("error")
+    
+    if i == None:
+        logger.error('error\nPerson not found!')
+        logger.spam('Please see birthdays.csv file to add new information.' )
     else:
         name = args.name.upper()
         if args.c and args.p:
             check_for_user(args.c, args.p)
-        if args.verbosity == 2:
-            logging.info(name + '\'s' + ' birthday is: ' + dataset[1][i])
-            logging.info(name + '\'s' + ' death is: ' + dataset[2][i])
-            logging.info(name + '\'s' + ' hometown is: ' + dataset[3][i])
-        elif args.verbosity == 1:
-            logging.info(name + '\'s' + ' birthday is: ' + dataset[1][i])
-            logging.info(name + '\'s' + ' death is: ' + dataset[2][i])
-        elif args.set:
-            return_set(args.name)
-        else:
-            logging.info(name+ '\'s' + ' birthday is: ' + dataset[1][i])
+            
+        logger.info(name + '\'s' + ' birthday is: ' + dataset[1][i])
+        logger.verbose(name + '\'s' + ' death is: ' + dataset[2][i])
+        logger.spam(name + '\'s' + ' city is: ' + dataset[3][i])
 
 
 if __name__ == "__main__":
