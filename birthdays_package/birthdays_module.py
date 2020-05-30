@@ -39,6 +39,7 @@ def return_index(name):
         count += 1
         if name == i:
             return count
+    return None
 
 
 def return_set(name):

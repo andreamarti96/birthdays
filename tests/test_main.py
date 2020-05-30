@@ -23,6 +23,11 @@ class TestMain(unittest.TestCase):
         """Check the presence of data inside the csv file."""
         data = return_data(filename=self.temporary_file)
         self.assertEqual(data, ([],[],[],[]))
+        
+    def test_index(self):
+        """Check if the index is False if person not found."""
+        data = return_index('Random_Person_Haha')
+        self.assertEqual(data, None)
 
 
     def tearDown(self):
