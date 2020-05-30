@@ -1,6 +1,6 @@
 '''Given a name, it returns his/her birth day, death, homwtown an
 name of the people born in the same century, according to different
-level of verbosity'''
+level of verbosity. Please see the command line options.'''
 
 import argparse
 import csv
@@ -36,7 +36,11 @@ def open_and_create():
 
 
 def check_for_user(username, password):
-    '''Check if database exists in a specific file'''
+    '''Check if database exists in a specific file.
+    
+    :param username: (str) - The username
+    :param password: (str) - User's password
+    '''
     global conn
     global cursor
     global logger
@@ -72,7 +76,7 @@ def check_for_user(username, password):
 
 def parse_arguments():
     '''Define arguments that the user will input and that will be
-    parsed through'''
+    parsed through.'''
     parser = argparse.ArgumentParser()
     parser.add_argument("name", help="return the birthday", type=str)
     parser.add_argument("-v", "--verbosity", help="increase output verbosity",

@@ -1,4 +1,6 @@
-"""Test code to check for errors."""
+"""Build basic tests to check for possible errors. All functions from 
+the birthdays module have a test.
+"""
 
 import unittest
 import os

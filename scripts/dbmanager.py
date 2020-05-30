@@ -1,6 +1,5 @@
-'''
-create a database
-'''
+'''Module used to manage the database. Find more about the usage in the 
+README file.'''
 
 import sqlite3
 import hashlib
@@ -33,9 +32,10 @@ def open_and_create():
 
 
 def parse_args():
-    '''
-    Creating new optional argumnets for adding the user
-    with his/her password
+    ''' Creating new optional arguments for adding the user
+    with his/her password.
+    
+    :return parser.parse_args(): arguments that have been parsed.
     '''
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', help="add a usernamename (requires -p)",
@@ -46,8 +46,10 @@ def parse_args():
 
 
 def save_new_username(username, password):
-    '''
-    Adding new user and password to database user
+    ''' Adding new user and password to database user
+    
+    :param username: (str)
+    :param password: (str)
     '''
     global conn
     global cursor
